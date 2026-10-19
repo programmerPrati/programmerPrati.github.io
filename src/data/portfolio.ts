@@ -30,6 +30,7 @@ export type TimelineItem = {
   period: string
   role: string
   organization: string
+  team?: string
   description?: string
 }
 
@@ -81,7 +82,8 @@ export const portfolio = {
     {
       period: 'Internship',
       role: 'Agentic AI Intern',
-      organization: 'Amazon · Prime Science',
+      organization: 'Amazon',
+      team: 'Prime Science',
       description:
         'Developed three agentic AI systems for Amazon Prime Science, automating marketplace onboarding, benefit onboarding, and the diagnosis and resolution of operational pipeline failures. Architected a multi-agent orchestration framework with specialized agents, tool execution, persistent state, resumable workflows, and structured inter-agent handoffs.',
     },

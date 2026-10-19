@@ -162,13 +162,8 @@ function App() {
         </section>
 
         <section className="section about" id="about">
-          <SectionHeading number="01" eyebrow="Profile" title="About" />
-          <div className="about-body">
-            <div className="about-copy reveal">
-              {portfolio.about.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+          <div className="section-rail about-rail">
+            <SectionHeading number="01" eyebrow="Profile" title="About" />
             <figure className="portrait reveal">
               <img
                 src="/images/pratibodh-solanki.jpg"
@@ -178,6 +173,11 @@ function App() {
               />
               <figcaption>Pratibodh Solanki</figcaption>
             </figure>
+          </div>
+          <div className="about-copy reveal">
+            {portfolio.about.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
           <aside className="about-note reveal">
             <p className="eyebrow">Current focus</p>
@@ -214,8 +214,9 @@ function App() {
               {portfolio.experience.map((item) => (
                 <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
                   <div className="experience-meta">
-                    <p>{item.period}</p>
-                    <p>{item.organization}</p>
+                    <p className="experience-type">{item.period}</p>
+                    <p className="experience-company">{item.organization}</p>
+                    {item.team && <p className="experience-team">{item.team}</p>}
                   </div>
                   <div>
                     <h3>{item.role}</h3>
