@@ -138,10 +138,6 @@ function App() {
 
       <main id="main-content">
         <section className="hero" id="top">
-          <div className="hero-marker" aria-hidden="true">
-            <span />
-            <span>Research portfolio · 2026</span>
-          </div>
           <div className="hero-content reveal is-visible">
             <p className="eyebrow">{profile.role}</p>
             <h1>Researching intelligence.</h1>
@@ -214,7 +210,10 @@ function App() {
               {portfolio.experience.map((item) => (
                 <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
                   <div className="experience-meta">
-                    <p className="experience-type">{item.period}</p>
+                    <div className="experience-type-row">
+                      <img className="amazon-symbol" src="/images/amazon.svg" alt="" aria-hidden="true" />
+                      <p className="experience-type">{item.period}</p>
+                    </div>
                     <p className="experience-company">{item.organization}</p>
                     {item.team && <p className="experience-team">{item.team}</p>}
                   </div>
@@ -289,21 +288,11 @@ function App() {
         )}
 
         <section className="contact" id="contact">
-          <p className="eyebrow reveal">Contact</p>
-          <div className="contact-grid">
-            <h2 className="reveal">Let’s think about<br /><em>what comes next.</em></h2>
-            <div className="contact-copy reveal">
-              <p>
-                I welcome conversations about research, collaboration, and engineering ambitious AI systems.
-              </p>
-              <div className="contact-links">
-                <TextLink href={`mailto:${profile.email}`}>{profile.email}</TextLink>
-                <TextLink href={portfolio.links.github}>GitHub</TextLink>
-                {portfolio.links.linkedin && <TextLink href={portfolio.links.linkedin}>LinkedIn</TextLink>}
-                {portfolio.links.scholar && <TextLink href={portfolio.links.scholar}>Google Scholar</TextLink>}
-                {portfolio.links.cv && <TextLink href={portfolio.links.cv}>Download CV</TextLink>}
-                {portfolio.links.resume && <TextLink href={portfolio.links.resume}>Download résumé</TextLink>}
-              </div>
+          <div className="contact-compact reveal">
+            <p className="eyebrow">Contact</p>
+            <div className="contact-links">
+              <TextLink href={`mailto:${profile.email}`}>{profile.email}</TextLink>
+              <TextLink href={portfolio.links.github}>GitHub</TextLink>
             </div>
           </div>
         </section>
