@@ -210,14 +210,11 @@ function App() {
               {portfolio.experience.map((item) => (
                 <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
                   <div className="experience-meta">
-                    <div className="experience-type-row">
-                      <img className="amazon-symbol" src="/images/amazon.svg" alt="" aria-hidden="true" />
-                      <p className="experience-type">{item.period}</p>
-                    </div>
-                    <p className="experience-company">{item.organization}</p>
+                    <img className="amazon-symbol" src="/images/amazon.svg" alt={item.organization} />
                     {item.team && <p className="experience-team">{item.team}</p>}
                   </div>
-                  <div>
+                  <div className="experience-detail">
+                    <p className="experience-type">{item.period}</p>
                     <h3>{item.role}</h3>
                     {item.description && <p>{item.description}</p>}
                   </div>

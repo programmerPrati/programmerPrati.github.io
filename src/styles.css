@@ -532,18 +532,12 @@ h3 {
 .experience-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-}
-
-.experience-type-row {
-  margin-bottom: 1.15rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  align-items: flex-start;
+  gap: 0.85rem;
 }
 
 .amazon-symbol {
-  width: 54px;
+  width: 92px;
   height: auto;
   display: block;
 }
@@ -553,25 +547,22 @@ h3 {
 }
 
 .experience-type {
-  margin-bottom: 0 !important;
+  margin: 0 0 0.8rem !important;
   color: var(--accent);
-  font: 500 clamp(0.9rem, 1.15vw, 1.05rem) var(--mono);
-  letter-spacing: 0.07em;
+  font: 500 0.68rem var(--mono);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.experience-company {
-  font-size: clamp(1.7rem, 2.5vw, 2.6rem);
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 1;
-}
-
 .experience-team {
-  color: var(--accent);
-  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
   font-weight: 500;
   letter-spacing: -0.02em;
+}
+
+.experience-detail h3 {
+  margin-bottom: 1.25rem;
 }
 
 .stack-list,
