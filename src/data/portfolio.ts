@@ -85,7 +85,7 @@ export const portfolio = {
       organization: 'Amazon',
       team: 'Prime Science',
       description:
-        'Developed three multi-agent AI systems for Amazon Prime Science, automating marketplace onboarding, benefit onboarding, and the diagnosis and resolution of operational pipeline failures. Architected a multi-agent orchestration framework with specialized agents, tool execution, persistent state, resumable workflows, and structured inter-agent handoffs. The work emphasized agent coordination, reliable tool use, and recovery across long-running, multi-step workflows.',
+        'Developed three multi-agent AI systems for Amazon Prime Science, encoding legacy operational knowledge into specialized agents to automate marketplace onboarding, benefit onboarding, and the diagnosis and resolution of operational pipeline failures. The systems reduced completion times for these workflows from days to hours. Architected a multi-agent orchestration framework with specialized agents, tool execution, persistent state, resumable workflows, and structured inter-agent handoffs.',
     },
   ] satisfies TimelineItem[],
   education: [] as TimelineItem[],
