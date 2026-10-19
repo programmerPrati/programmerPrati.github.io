@@ -58,7 +58,7 @@ function App() {
     () =>
       [
         { id: 'about' as SectionId, label: 'About', show: true },
-        { id: 'research' as SectionId, label: 'Research', show: portfolio.researchAreas.length > 0 },
+        { id: 'research' as SectionId, label: 'Research', show: portfolio.researchProjects.length > 0 },
         { id: 'publications' as SectionId, label: 'Publications', show: portfolio.publications.length > 0 },
         { id: 'projects' as SectionId, label: 'Projects', show: portfolio.projects.length > 0 },
         {
@@ -144,11 +144,7 @@ function App() {
           </div>
           <div className="hero-content reveal is-visible">
             <p className="eyebrow">{profile.role}</p>
-            <h1>
-              Researching intelligence.
-              <br />
-              <em>Engineering impact.</em>
-            </h1>
+            <h1>Researching intelligence.</h1>
             <p className="hero-intro">{profile.introduction}</p>
             <div className="hero-actions">
               <a className="button primary" href="#research">
@@ -167,36 +163,73 @@ function App() {
 
         <section className="section about" id="about">
           <SectionHeading number="01" eyebrow="Profile" title="About" />
-          <div className="about-copy reveal">
-            {portfolio.about.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+          <div className="about-body">
+            <div className="about-copy reveal">
+              {portfolio.about.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <figure className="portrait reveal">
+              <img
+                src="/images/pratibodh-solanki.jpg"
+                alt="Pratibodh Solanki outdoors in winter"
+                width="1000"
+                height="750"
+              />
+              <figcaption>Pratibodh Solanki</figcaption>
+            </figure>
           </div>
           <aside className="about-note reveal">
             <p className="eyebrow">Current focus</p>
-            <p>Machine learning research, robust evaluation, and research-grade AI systems.</p>
+            <p>Multi-agent learning, reinforcement learning, and research-grade agentic systems.</p>
           </aside>
         </section>
 
         <section className="section research" id="research">
-          <SectionHeading number="02" eyebrow="Areas of inquiry" title="Research directions" />
+          <SectionHeading number="02" eyebrow="Selected work" title="Research" />
           <p className="section-intro reveal">
-            I am drawn to questions that connect the foundations of learning with the practical demands of building dependable intelligent systems.
+            My research explores how agents learn from one another, adapt through interaction, and acquire useful behavior from language-model supervision.
           </p>
-          <div className="research-grid">
-            {portfolio.researchAreas.map((area) => (
-              <article className="research-card reveal" key={area.index}>
-                <span className="card-index">{area.index}</span>
-                <h3>{area.title}</h3>
-                <p>{area.description}</p>
+          <div className="research-list">
+            {portfolio.researchProjects.map((project, index) => (
+              <article className="research-project reveal" key={project.title}>
+                <div className="research-project-meta">
+                  <span className="card-index">{String(index + 1).padStart(2, '0')}</span>
+                  <p>{project.period}</p>
+                </div>
+                <div className="research-project-content">
+                  <h3>{project.title}</h3>
+                  {project.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  {project.status && <p className="project-status">{project.status}</p>}
+                </div>
               </article>
             ))}
           </div>
         </section>
 
+        {portfolio.experience.length > 0 && (
+          <section className="section experience" id="experience">
+            <SectionHeading number="03" eyebrow="Industry" title="Experience" />
+            <div className="experience-list">
+              {portfolio.experience.map((item) => (
+                <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
+                  <div className="experience-meta">
+                    <p>{item.period}</p>
+                    <p>{item.organization}</p>
+                  </div>
+                  <div>
+                    <h3>{item.role}</h3>
+                    {item.description && <p>{item.description}</p>}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         {portfolio.publications.length > 0 && (
           <section className="section" id="publications">
-            <SectionHeading number="03" eyebrow="Selected writing" title="Publications" />
+            <SectionHeading number="04" eyebrow="Selected writing" title="Publications" />
             <div className="stack-list">
               {portfolio.publications.map((publication) => (
                 <article className="publication reveal" key={publication.title}>
@@ -214,7 +247,7 @@ function App() {
 
         {portfolio.projects.length > 0 && (
           <section className="section" id="projects">
-            <SectionHeading number="04" eyebrow="Selected work" title="Projects" />
+            <SectionHeading number="05" eyebrow="Selected work" title="Projects" />
             <div className="project-grid">
               {portfolio.projects.map((project) => (
                 <article className="project-card reveal" key={project.title}>
@@ -227,28 +260,16 @@ function App() {
           </section>
         )}
 
-        {(portfolio.experience.length > 0 || portfolio.education.length > 0) && (
-          <section className="section split-section">
-            {portfolio.experience.length > 0 && (
-              <div id="experience">
-                <SectionHeading number="05" eyebrow="Where I have worked" title="Experience" />
-                {portfolio.experience.map((item) => (
-                  <article className="timeline-item reveal" key={`${item.period}-${item.role}`}>
-                    <p>{item.period}</p><h3>{item.role}</h3><p>{item.organization}</p>
-                  </article>
-                ))}
-              </div>
-            )}
-            {portfolio.education.length > 0 && (
-              <div id="education">
-                <SectionHeading number="06" eyebrow="Academic path" title="Education" />
-                {portfolio.education.map((item) => (
-                  <article className="timeline-item reveal" key={`${item.period}-${item.role}`}>
-                    <p>{item.period}</p><h3>{item.role}</h3><p>{item.organization}</p>
-                  </article>
-                ))}
-              </div>
-            )}
+        {portfolio.education.length > 0 && (
+          <section className="section" id="education">
+            <SectionHeading number="06" eyebrow="Academic path" title="Education" />
+            <div>
+              {portfolio.education.map((item) => (
+                <article className="timeline-item reveal" key={`${item.period}-${item.role}`}>
+                  <p>{item.period}</p><h3>{item.role}</h3><p>{item.organization}</p>
+                </article>
+              ))}
+            </div>
           </section>
         )}
 
