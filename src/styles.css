@@ -274,6 +274,24 @@ h3 {
   gap: 1.5rem;
 }
 
+.hero .button.primary {
+  width: 9.5rem;
+  min-height: 2.65rem;
+  padding: 0 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.78rem;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.hero .button.primary:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
 .hero .text-link {
   width: 9.5rem;
   color: white;
