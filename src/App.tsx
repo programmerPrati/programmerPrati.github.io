@@ -143,7 +143,7 @@ function App() {
             <h1>Researching intelligence.</h1>
             <p className="hero-intro">{profile.introduction}</p>
             <div className="hero-actions">
-              <a className="button primary" href="#research">
+              <a className="text-link" href="#research">
                 Explore research <span aria-hidden="true">↓</span>
               </a>
               <TextLink href={`mailto:${profile.email}`}>Start a conversation</TextLink>
