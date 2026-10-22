@@ -325,16 +325,7 @@ h3 {
 }
 
 .section-heading {
-  display: grid;
-  grid-template-columns: 2.25rem 1fr;
-  gap: 1rem;
   align-self: start;
-}
-
-.section-number,
-.card-index {
-  color: var(--muted);
-  font: 300 0.65rem var(--mono);
 }
 
 .section-heading .eyebrow {
@@ -351,6 +342,7 @@ h3 {
 
 .about {
   grid-template-areas: 'rail copy' 'rail note';
+  row-gap: 2rem;
 }
 
 .about-rail {
@@ -375,11 +367,15 @@ h3 {
   line-height: 1.65;
 }
 
+.about-copy p:last-child {
+  margin-bottom: 0;
+}
+
 .about-note {
   grid-area: note;
   max-width: 520px;
-  margin-top: 2.25rem;
-  padding: 1.4rem 0 0 3rem;
+  margin-top: 0;
+  padding: 1.1rem 0 0;
   border-top: 1px solid var(--line);
   color: var(--muted);
   line-height: 1.7;
@@ -391,7 +387,7 @@ h3 {
 
 .portrait {
   width: 150px;
-  margin: 3.5rem 0 0 3.25rem;
+  margin: 3.5rem 0 0;
 }
 
 .portrait img {
@@ -580,7 +576,7 @@ h3 {
 }
 
 .contact {
-  padding: 2.75rem 4.5vw;
+  padding: 2rem 4.5vw;
   background: var(--ink);
   color: white;
 }
@@ -608,8 +604,8 @@ h3 {
 }
 
 footer {
-  min-height: 88px;
-  padding: 1.5rem 4.5vw;
+  min-height: 58px;
+  padding: 0.7rem 4.5vw;
   display: grid;
   grid-template-columns: 1fr 1fr auto;
   align-items: center;

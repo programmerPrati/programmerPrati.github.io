@@ -29,17 +29,14 @@ function TextLink({ href, children }: { href: string; children: React.ReactNode 
 }
 
 function SectionHeading({
-  number,
   title,
   eyebrow,
 }: {
-  number: string
   title: string
   eyebrow: string
 }) {
   return (
     <header className="section-heading reveal">
-      <div className="section-number">{number}</div>
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
@@ -156,7 +153,7 @@ function App() {
 
         <section className="section about" id="about">
           <div className="section-rail about-rail">
-            <SectionHeading number="01" eyebrow="Profile" title="About" />
+            <SectionHeading eyebrow="Profile" title="About" />
             <figure className="portrait reveal">
               <img
                 src="/images/pratibodh-solanki.jpg"
@@ -179,15 +176,14 @@ function App() {
         </section>
 
         <section className="section research" id="research">
-          <SectionHeading number="02" eyebrow="Selected work" title="Research" />
+          <SectionHeading eyebrow="Selected work" title="Research" />
           <p className="section-intro reveal">
             My research explores how agents learn from one another, adapt through interaction, and acquire useful behavior from language-model supervision.
           </p>
           <div className="research-list">
-            {portfolio.researchProjects.map((project, index) => (
+            {portfolio.researchProjects.map((project) => (
               <article className="research-project reveal" key={project.title}>
                 <div className="research-project-meta">
-                  <span className="card-index">{String(index + 1).padStart(2, '0')}</span>
                   <p>{project.period}</p>
                 </div>
                 <div className="research-project-content">
@@ -202,7 +198,7 @@ function App() {
 
         {portfolio.experience.length > 0 && (
           <section className="section experience" id="experience">
-            <SectionHeading number="03" eyebrow="Industry" title="Experience" />
+            <SectionHeading eyebrow="Industry" title="Experience" />
             <div className="experience-list">
               {portfolio.experience.map((item) => (
                 <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
@@ -223,7 +219,7 @@ function App() {
 
         {portfolio.publications.length > 0 && (
           <section className="section" id="publications">
-            <SectionHeading number="04" eyebrow="Selected writing" title="Publications" />
+            <SectionHeading eyebrow="Selected writing" title="Publications" />
             <div className="stack-list">
               {portfolio.publications.map((publication) => (
                 <article className="publication reveal" key={publication.title}>
@@ -241,7 +237,7 @@ function App() {
 
         {portfolio.projects.length > 0 && (
           <section className="section" id="projects">
-            <SectionHeading number="05" eyebrow="Selected work" title="Projects" />
+            <SectionHeading eyebrow="Selected work" title="Projects" />
             <div className="project-grid">
               {portfolio.projects.map((project) => (
                 <article className="project-card reveal" key={project.title}>
@@ -256,7 +252,7 @@ function App() {
 
         {portfolio.education.length > 0 && (
           <section className="section" id="education">
-            <SectionHeading number="06" eyebrow="Academic path" title="Education" />
+            <SectionHeading eyebrow="Academic path" title="Education" />
             <div>
               {portfolio.education.map((item) => (
                 <article className="timeline-item reveal" key={`${item.period}-${item.role}`}>
@@ -269,7 +265,7 @@ function App() {
 
         {portfolio.skills.length > 0 && (
           <section className="section" id="skills">
-            <SectionHeading number="07" eyebrow="Technical toolkit" title="Skills" />
+            <SectionHeading eyebrow="Technical toolkit" title="Skills" />
             <div className="skills-grid">
               {portfolio.skills.map((skillGroup) => (
                 <div className="skill-group reveal" key={skillGroup.group}>
