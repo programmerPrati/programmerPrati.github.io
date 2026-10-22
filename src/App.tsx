@@ -150,9 +150,6 @@ function App() {
             </div>
           </div>
           <div className="hero-footer">
-            <p>
-              <span className="status-dot" /> Open to research conversations
-            </p>
             <p className="hero-name">{profile.name}</p>
           </div>
         </section>

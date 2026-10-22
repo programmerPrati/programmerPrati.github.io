@@ -103,7 +103,7 @@ h3 {
   top: 0;
   left: 50%;
   width: min(100%, 1600px);
-  height: 84px;
+  height: 70px;
   padding: 0 4.5vw;
   display: flex;
   align-items: center;
@@ -114,7 +114,7 @@ h3 {
 }
 
 .site-header.is-scrolled {
-  height: 68px;
+  height: 60px;
   background: rgba(245, 243, 238, 0.91);
   border-color: var(--line);
   backdrop-filter: blur(14px);
@@ -211,8 +211,8 @@ h3 {
 }
 
 .hero {
-  min-height: 600px;
-  padding: 8rem 4.5vw 2rem;
+  min-height: 540px;
+  padding: 6.5rem 4.5vw 1.1rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;
@@ -224,7 +224,7 @@ h3 {
 
 .hero-content {
   align-self: center;
-  padding: 3rem 0 4rem;
+  padding: 2.25rem 0 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -328,8 +328,8 @@ h3 {
 .hero-footer {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   font: 300 0.66rem var(--mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -337,16 +337,6 @@ h3 {
 
 .hero-footer p {
   margin: 0;
-}
-
-.status-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: 0.55rem;
-  border-radius: 50%;
-  background: #2f7d5b;
-  box-shadow: 0 0 0 4px rgba(47, 125, 91, 0.12);
 }
 
 .hero-name {
@@ -682,7 +672,7 @@ footer a {
 
 @media (max-width: 900px) {
   .site-header {
-    height: 70px;
+    height: 62px;
     padding-inline: 1.3rem;
   }
 
@@ -798,7 +788,8 @@ footer a {
 
 @media (max-width: 620px) {
   .hero {
-    min-height: 560px;
+    min-height: 510px;
+    padding-top: 5.75rem;
   }
 
   .hero-actions {
@@ -808,9 +799,7 @@ footer a {
   }
 
   .hero-footer {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.8rem;
+    align-items: center;
   }
 
   .project-grid,
