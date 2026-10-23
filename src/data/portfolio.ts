@@ -3,26 +3,12 @@ export type Link = {
   href: string
 }
 
-export type ResearchProject = {
+export type FeaturedResearch = {
   title: string
   period: string
   description: string[]
   status?: string
-}
-
-export type Publication = {
-  title: string
-  authors: string
-  venue: string
-  year: string
-  summary?: string
-  links: Link[]
-}
-
-export type Project = {
-  title: string
-  description: string
-  tags: string[]
+  targetVenue?: string
   links: Link[]
 }
 
@@ -31,25 +17,28 @@ export type TimelineItem = {
   role: string
   organization: string
   team?: string
-  description?: string
+  location?: string
+  description?: string[]
 }
 
 export const portfolio = {
   profile: {
     name: 'Pratibodh Solanki',
     initials: 'PS',
-    role: 'AI / ML Research & Engineering',
+    role: "Master's Student in Computer Science",
     introduction:
-      'Exploring how intelligent systems can be made more capable, reliable, and useful.',
+      'Focused on machine learning and artificial intelligence, with a passion for research into capable, reliable, and useful intelligent systems.',
     affiliation: '',
     location: '',
     email: 'pratibodhs@gmail.com',
   },
   about: [
-    'I am an AI/ML researcher and engineer interested in the ideas and systems that make modern machine learning work. My focus spans rigorous experimentation, thoughtful evaluation, and the engineering needed to turn research into dependable tools.',
+    "I am a Master's student in Computer Science focused on machine learning and artificial intelligence, with a passion for research. I am interested in the ideas and systems that make modern machine learning work, from rigorous experimentation to thoughtful evaluation.",
     'My work connects multi-agent learning, reinforcement learning, and agentic systems with the engineering needed to make research ideas dependable in practice.',
   ],
-  researchProjects: [
+  // Add preprints, code, project pages, and other artifacts to each entry's links.
+  // targetVenue is optional and only appears when a destination has been selected.
+  featuredResearch: [
     {
       title: 'Co-Evolving Web Agents',
       period: 'March 2026 — Present',
@@ -57,6 +46,7 @@ export const portfolio = {
         'Architecting a co-evolving system in which one agent generates an environment and proposes a task for another agent to complete. The system includes a reinforcement-learning loop designed to train both agents through their evolving interaction.',
       ],
       status: 'Ongoing MS Research',
+      links: [],
     },
     {
       title: 'MOSLIIL: LLM-Supervised Multi-Agent Collaborative Imitation Learning',
@@ -65,6 +55,7 @@ export const portfolio = {
         'Developed a framework for training multi-agent systems with LLM supervision across centralized and decentralized architectures. Robotic agents query an LLM directly for demonstrations, then learn collaborative behavior through imitation.',
       ],
       status: 'First-author research paper in progress',
+      links: [],
     },
     {
       title: 'Novel Info-Metrics and Cross-Entropy Losses for Deep Learning',
@@ -72,20 +63,21 @@ export const portfolio = {
       description: [
         'Proposed a family of custom information metrics and formulated novel cross-entropy-based loss functions for deep learning algorithms, providing tunable learning dynamics that complement standard cross-entropy objectives.',
       ],
+      links: [],
     },
-  ] satisfies ResearchProject[],
+  ] as FeaturedResearch[],
 
-  // Add real entries below; empty sections remain hidden from the public site.
-  publications: [] as Publication[],
-  projects: [] as Project[],
   experience: [
     {
-      period: 'Internship',
+      period: 'June — August 2026',
       role: 'Agentic AI Intern',
       organization: 'Amazon',
       team: 'Prime Science',
-      description:
-        'Developed three multi-agent AI systems for Amazon Prime Science, encoding legacy operational knowledge into specialized agents to automate marketplace onboarding, benefit onboarding, and the diagnosis and resolution of operational pipeline failures. Architected a multi-agent orchestration framework with specialized agents, tool execution, persistent state, resumable workflows, and structured inter-agent handoffs. The systems reduced completion times for these workflows from days to hours.',
+      location: 'Seattle, Washington',
+      description: [
+        'Developed three multi-agent AI systems for Amazon Prime Science, encoding legacy operational knowledge into specialized agents that automate marketplace onboarding, benefit onboarding, and operational-pipeline diagnosis and resolution.',
+        'Built the orchestration framework with specialized agents, tool execution, persistent state, resumable workflows, and structured inter-agent handoffs—reducing completion times from days to hours.',
+      ],
     },
   ] satisfies TimelineItem[],
   education: [] as TimelineItem[],

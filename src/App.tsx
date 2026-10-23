@@ -2,11 +2,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { portfolio } from './data/portfolio'
 
 type SectionId =
-  | 'about'
   | 'research'
-  | 'publications'
-  | 'projects'
   | 'experience'
+  | 'about'
   | 'education'
   | 'skills'
   | 'contact'
@@ -54,15 +52,17 @@ function App() {
   const sections = useMemo(
     () =>
       [
-        { id: 'about' as SectionId, label: 'About', show: true },
-        { id: 'research' as SectionId, label: 'Research', show: portfolio.researchProjects.length > 0 },
-        { id: 'publications' as SectionId, label: 'Publications', show: portfolio.publications.length > 0 },
-        { id: 'projects' as SectionId, label: 'Projects', show: portfolio.projects.length > 0 },
+        {
+          id: 'research' as SectionId,
+          label: 'Research',
+          show: portfolio.featuredResearch.length > 0,
+        },
         {
           id: 'experience' as SectionId,
           label: 'Experience',
           show: portfolio.experience.length > 0,
         },
+        { id: 'about' as SectionId, label: 'About', show: true },
         { id: 'education' as SectionId, label: 'Education', show: portfolio.education.length > 0 },
         { id: 'skills' as SectionId, label: 'Skills', show: portfolio.skills.length > 0 },
         { id: 'contact' as SectionId, label: 'Contact', show: true },
@@ -98,8 +98,36 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const sectionId = decodeURIComponent(window.location.hash.slice(1))
+    if (!sectionId) return
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(sectionId)?.scrollIntoView()
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
+
+  useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen)
     return () => document.body.classList.remove('menu-open')
+  }, [menuOpen])
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    const closeOnDesktop = () => {
+      if (window.innerWidth > 900) setMenuOpen(false)
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    window.addEventListener('resize', closeOnDesktop)
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape)
+      window.removeEventListener('resize', closeOnDesktop)
+    }
   }, [menuOpen])
 
   return (
@@ -110,11 +138,20 @@ function App() {
       <div className="progress-bar" style={{ transform: `scaleX(${progress / 100})` }} />
 
       <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
-        <a className="wordmark" href="#top" aria-label={`${profile.name}, home`}>
+        <a
+          className="wordmark"
+          href="#top"
+          aria-label={`${profile.name}, home`}
+          onClick={() => setMenuOpen(false)}
+        >
           <span>{profile.initials}</span>
           <span className="wordmark-name">{profile.name}</span>
         </a>
-        <nav className={`navigation ${menuOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
+        <nav
+          className={`navigation ${menuOpen ? 'is-open' : ''}`}
+          id="primary-navigation"
+          aria-label="Primary navigation"
+        >
           {sections.map((section) => (
             <a key={section.id} href={`#${section.id}`} onClick={() => setMenuOpen(false)}>
               {section.label}
@@ -126,6 +163,7 @@ function App() {
           type="button"
           aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
           aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span />
@@ -137,7 +175,8 @@ function App() {
         <section className="hero" id="top">
           <div className="hero-content reveal is-visible">
             <p className="eyebrow">{profile.role}</p>
-            <h1>Researching intelligence.</h1>
+            <h1>{profile.name}</h1>
+            <p className="hero-tagline">Researching intelligence.</p>
             <p className="hero-intro">{profile.introduction}</p>
             <div className="hero-actions">
               <a className="button primary" href="#research">
@@ -146,10 +185,66 @@ function App() {
               <TextLink href={`mailto:${profile.email}`}>Start a conversation</TextLink>
             </div>
           </div>
-          <div className="hero-footer">
-            <p className="hero-name">{profile.name}</p>
+        </section>
+
+        <section className="section research" id="research">
+          <SectionHeading eyebrow="Selected work" title="Featured Research" />
+          <p className="section-intro reveal">
+            Research on how agents learn from one another, adapt through interaction, and acquire useful behavior from language-model supervision.
+          </p>
+          <div className="research-list">
+            {portfolio.featuredResearch.map((project) => (
+              <article className="research-project reveal" key={project.title}>
+                <div className="research-project-meta">
+                  <p>{project.period}</p>
+                </div>
+                <div className="research-project-content">
+                  <h3>{project.title}</h3>
+                  {project.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  {(project.status || project.targetVenue) && (
+                    <div className="research-badges">
+                      {project.status && <span className="project-status">{project.status}</span>}
+                      {project.targetVenue && (
+                        <span className="target-venue">Target: {project.targetVenue}</span>
+                      )}
+                    </div>
+                  )}
+                  {project.links.length > 0 && (
+                    <div className="research-links">
+                      {project.links.map((link) => (
+                        <TextLink key={link.href} href={link.href}>{link.label}</TextLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         </section>
+
+        {portfolio.experience.length > 0 && (
+          <section className="section experience" id="experience">
+            <SectionHeading eyebrow="Industry" title="Experience" />
+            <div className="experience-list">
+              {portfolio.experience.map((item) => (
+                <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
+                  <div className="experience-meta">
+                    <img className="amazon-symbol" src="/images/amazon.svg" alt={item.organization} />
+                    {item.team && <p className="experience-team">{item.team}</p>}
+                  </div>
+                  <div className="experience-detail">
+                    <div className="experience-facts">
+                      <span>{item.period}</span>
+                      {item.location && <span>{item.location}</span>}
+                    </div>
+                    <h3>{item.role}</h3>
+                    {item.description?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="section about" id="about">
           <div className="section-rail about-rail">
@@ -174,81 +269,6 @@ function App() {
             <p>Multi-agent learning, reinforcement learning, and research-grade agentic systems.</p>
           </aside>
         </section>
-
-        <section className="section research" id="research">
-          <SectionHeading eyebrow="Selected work" title="Research" />
-          <p className="section-intro reveal">
-            My research explores how agents learn from one another, adapt through interaction, and acquire useful behavior from language-model supervision.
-          </p>
-          <div className="research-list">
-            {portfolio.researchProjects.map((project) => (
-              <article className="research-project reveal" key={project.title}>
-                <div className="research-project-meta">
-                  <p>{project.period}</p>
-                </div>
-                <div className="research-project-content">
-                  <h3>{project.title}</h3>
-                  {project.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                  {project.status && <p className="project-status">{project.status}</p>}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {portfolio.experience.length > 0 && (
-          <section className="section experience" id="experience">
-            <SectionHeading eyebrow="Industry" title="Experience" />
-            <div className="experience-list">
-              {portfolio.experience.map((item) => (
-                <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
-                  <div className="experience-meta">
-                    <img className="amazon-symbol" src="/images/amazon.svg" alt={item.organization} />
-                    {item.team && <p className="experience-team">{item.team}</p>}
-                  </div>
-                  <div className="experience-detail">
-                    <p className="experience-type">{item.period}</p>
-                    <h3>{item.role}</h3>
-                    {item.description && <p>{item.description}</p>}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {portfolio.publications.length > 0 && (
-          <section className="section" id="publications">
-            <SectionHeading eyebrow="Selected writing" title="Publications" />
-            <div className="stack-list">
-              {portfolio.publications.map((publication) => (
-                <article className="publication reveal" key={publication.title}>
-                  <p className="publication-meta">{publication.year} · {publication.venue}</p>
-                  <h3>{publication.title}</h3>
-                  <p>{publication.authors}</p>
-                  <div className="link-row">
-                    {publication.links.map((link) => <TextLink key={link.href} href={link.href}>{link.label}</TextLink>)}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {portfolio.projects.length > 0 && (
-          <section className="section" id="projects">
-            <SectionHeading eyebrow="Selected work" title="Projects" />
-            <div className="project-grid">
-              {portfolio.projects.map((project) => (
-                <article className="project-card reveal" key={project.title}>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="tag-row">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
 
         {portfolio.education.length > 0 && (
           <section className="section" id="education">
