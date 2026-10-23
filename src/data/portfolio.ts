@@ -32,8 +32,12 @@ export const portfolio = {
     location: '',
     email: 'pratibodhs@gmail.com',
   },
+  briefAbout: [
+    "I am a Master's student in Computer Science focused on machine learning and artificial intelligence, with a passion for research.",
+    'I am especially interested in multi-agent learning, reinforcement learning, and building dependable agentic systems.',
+  ],
   about: [
-    "I am a Master's student in Computer Science focused on machine learning and artificial intelligence, with a passion for research. I am interested in the ideas and systems that make modern machine learning work, from rigorous experimentation to thoughtful evaluation.",
+    'I am interested in the ideas and systems that make modern machine learning work, from rigorous experimentation to thoughtful evaluation.',
     'My work connects multi-agent learning, reinforcement learning, and agentic systems with the engineering needed to make research ideas dependable in practice.',
   ],
   // Add preprints, code, project pages, and other artifacts to each entry's links.

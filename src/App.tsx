@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { portfolio } from './data/portfolio'
 
 type SectionId =
+  | 'profile'
   | 'research'
   | 'experience'
   | 'about'
@@ -52,6 +53,7 @@ function App() {
   const sections = useMemo(
     () =>
       [
+        { id: 'profile' as SectionId, label: 'About', show: true },
         {
           id: 'research' as SectionId,
           label: 'Research',
@@ -62,7 +64,6 @@ function App() {
           label: 'Experience',
           show: portfolio.experience.length > 0,
         },
-        { id: 'about' as SectionId, label: 'About', show: true },
         { id: 'education' as SectionId, label: 'Education', show: portfolio.education.length > 0 },
         { id: 'skills' as SectionId, label: 'Skills', show: portfolio.skills.length > 0 },
         { id: 'contact' as SectionId, label: 'Contact', show: true },
@@ -174,27 +175,32 @@ function App() {
       <main id="main-content">
         <section className="hero" id="top">
           <div className="hero-content reveal is-visible">
-            <div className="hero-copy">
-              <p className="eyebrow">{profile.role}</p>
-              <h1>{profile.name}</h1>
-              <p className="hero-tagline">Researching intelligence.</p>
-              <p className="hero-intro">{profile.introduction}</p>
-            </div>
-            <figure className="hero-portrait">
-              <img
-                src="/images/pratibodh-solanki.jpg"
-                alt="Pratibodh Solanki outdoors in winter"
-                width="1000"
-                height="750"
-              />
-              <figcaption>Machine Learning · AI · Research</figcaption>
-            </figure>
+            <p className="eyebrow">{profile.role}</p>
+            <h1>{profile.name}</h1>
+            <p className="hero-tagline">Researching intelligence.</p>
             <div className="hero-actions">
               <a className="button primary" href="#research">
                 Explore research <span aria-hidden="true">↓</span>
               </a>
               <TextLink href={`mailto:${profile.email}`}>Start a conversation</TextLink>
             </div>
+          </div>
+        </section>
+
+        <section className="profile-summary" id="profile">
+          <figure className="profile-summary-portrait reveal">
+            <img
+              src="/images/pratibodh-solanki.jpg"
+              alt="Pratibodh Solanki outdoors in winter"
+              width="1000"
+              height="750"
+            />
+          </figure>
+          <div className="profile-summary-copy reveal">
+            <p className="eyebrow">About me</p>
+            {portfolio.briefAbout.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </section>
 
@@ -259,7 +265,7 @@ function App() {
 
         <section className="section about" id="about">
           <div className="section-rail about-rail">
-            <SectionHeading eyebrow="Profile" title="About" />
+            <SectionHeading eyebrow="Background" title="More About Me" />
           </div>
           <div className="about-copy reveal">
             {portfolio.about.map((paragraph) => (
