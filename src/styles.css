@@ -331,12 +331,14 @@ h3 {
 
 .profile-summary-portrait {
   width: 160px;
+  aspect-ratio: 1;
   margin: 0;
+  overflow: hidden;
 }
 
 .profile-summary-portrait img {
   width: 100%;
-  aspect-ratio: 1;
+  height: 100%;
   display: block;
   object-fit: cover;
   object-position: 43% 46%;
