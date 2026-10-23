@@ -174,10 +174,21 @@ function App() {
       <main id="main-content">
         <section className="hero" id="top">
           <div className="hero-content reveal is-visible">
-            <p className="eyebrow">{profile.role}</p>
-            <h1>{profile.name}</h1>
-            <p className="hero-tagline">Researching intelligence.</p>
-            <p className="hero-intro">{profile.introduction}</p>
+            <div className="hero-copy">
+              <p className="eyebrow">{profile.role}</p>
+              <h1>{profile.name}</h1>
+              <p className="hero-tagline">Researching intelligence.</p>
+              <p className="hero-intro">{profile.introduction}</p>
+            </div>
+            <figure className="hero-portrait">
+              <img
+                src="/images/pratibodh-solanki.jpg"
+                alt="Pratibodh Solanki outdoors in winter"
+                width="1000"
+                height="750"
+              />
+              <figcaption>Machine Learning · AI · Research</figcaption>
+            </figure>
             <div className="hero-actions">
               <a className="button primary" href="#research">
                 Explore research <span aria-hidden="true">↓</span>
@@ -249,15 +260,6 @@ function App() {
         <section className="section about" id="about">
           <div className="section-rail about-rail">
             <SectionHeading eyebrow="Profile" title="About" />
-            <figure className="portrait reveal">
-              <img
-                src="/images/pratibodh-solanki.jpg"
-                alt="Pratibodh Solanki outdoors in winter"
-                width="1000"
-                height="750"
-              />
-              <figcaption>Pratibodh Solanki</figcaption>
-            </figure>
           </div>
           <div className="about-copy reveal">
             {portfolio.about.map((paragraph) => (
