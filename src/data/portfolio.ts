@@ -53,6 +53,14 @@ export const portfolio = {
       links: [],
     },
     {
+      title: 'Copy Heads and Predecessor Heads: How Gemma-2-2B Routes and Decrements Exponents in Symbolic Differentiation',
+      period: '2026',
+      description: [
+        'Investigated how Gemma-2-2B applies the power rule by separating exponent copying from decrementing. Using logit-lens analysis, activation and path patching, and OV-circuit probes, we identified distinct layer-18 attention heads for the two operations: a copy head that maps n to n directly, and a predecessor head that maps n to n − 1 primarily through later MLP computation.',
+      ],
+      links: [],
+    },
+    {
       title: 'MOSLIIL: LLM-Supervised Multi-Agent Collaborative Imitation Learning',
       period: 'January 2025 — May 2025',
       description: [
