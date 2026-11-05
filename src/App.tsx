@@ -149,14 +149,6 @@ function App() {
       <div className="progress-bar" style={{ transform: `scaleX(${progress / 100})` }} />
 
       <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
-        <a
-          className="wordmark"
-          href="#top"
-          aria-label={`${profile.name}, home`}
-          onClick={() => setMenuOpen(false)}
-        >
-          <span>{profile.initials}</span>
-        </a>
         <nav
           className={`navigation ${menuOpen ? 'is-open' : ''}`}
           id="primary-navigation"
