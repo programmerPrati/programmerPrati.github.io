@@ -211,11 +211,11 @@ function App() {
             <div className="research-list">
               {portfolio.featuredResearch.map((project) => (
                 <article className="research-project reveal" key={project.title}>
-                  <div className="research-project-meta">
-                    <p>{project.period}</p>
-                  </div>
                   <div className="research-project-content">
-                    <h3>{project.title}</h3>
+                    <div className="research-project-heading">
+                      <h3>{project.title}</h3>
+                      <p className="research-project-period">{project.period}</p>
+                    </div>
                     {project.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                     {(project.status || project.targetVenue) && (
                       <div className="research-badges">
@@ -245,15 +245,17 @@ function App() {
             <div className="experience-list">
               {portfolio.experience.map((item) => (
                 <article className="experience-item reveal" key={`${item.period}-${item.role}`}>
-                  <div className="experience-meta">
-                    <img className="amazon-symbol" src="/images/amazon.svg" alt={item.organization} />
-                    {item.team && <p className="experience-team">{item.team}</p>}
-                  </div>
-                  <div className="experience-detail">
+                  <div className="experience-heading">
+                    <div className="experience-meta">
+                      <img className="amazon-symbol" src="/images/amazon.svg" alt={item.organization} />
+                      {item.team && <p className="experience-team">{item.team}</p>}
+                    </div>
                     <div className="experience-facts">
                       <span>{item.period}</span>
                       {item.location && <span>{item.location}</span>}
                     </div>
+                  </div>
+                  <div className="experience-detail">
                     <h3>{item.role}</h3>
                     {item.description?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   </div>
