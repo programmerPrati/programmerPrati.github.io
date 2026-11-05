@@ -181,6 +181,7 @@ function App() {
             <div className="hero-actions">
               <TextLink href={`mailto:${profile.email}`}>{profile.email}</TextLink>
               <TextLink href={portfolio.links.github}>GitHub</TextLink>
+              <TextLink href={portfolio.links.linkedin}>LinkedIn</TextLink>
             </div>
           </div>
         </section>

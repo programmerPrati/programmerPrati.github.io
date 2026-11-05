@@ -97,7 +97,7 @@ export const portfolio = {
 
   links: {
     github: 'https://github.com/programmerPrati',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/pratibodh-solanki/',
     scholar: '',
     cv: '',
     resume: '',
