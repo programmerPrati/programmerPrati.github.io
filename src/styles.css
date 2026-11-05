@@ -264,11 +264,6 @@ h3 {
   line-height: 1.2;
 }
 
-.contact h2 em {
-  font-family: var(--serif);
-  font-weight: 400;
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -439,14 +434,6 @@ h3 {
 
 .research {
   background: #e9eceb;
-}
-
-.section-intro {
-  max-width: 720px;
-  margin-bottom: 1.25rem;
-  color: var(--muted);
-  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-  line-height: 1.65;
 }
 
 .research-body {
@@ -656,40 +643,13 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
-.contact {
-  padding: 2rem 4.5vw;
-  background: var(--ink);
-  color: white;
-}
-
-.contact .eyebrow {
-  color: #8bb7d2;
-}
-
-.contact-compact {
-  display: grid;
-  grid-template-columns: minmax(190px, 0.32fr) minmax(0, 1fr);
-  gap: clamp(2.25rem, 4vw, 5rem);
-  align-items: center;
-}
-
-.contact-compact .eyebrow {
-  margin: 0;
-}
-
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1.25rem 2.5rem;
-}
-
 footer {
+  position: relative;
   min-height: 58px;
   padding: 0.7rem 4.5vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: center;
   background: var(--ink);
   color: #8f989f;
   border-top: 1px solid rgba(255,255,255,0.12);
@@ -700,6 +660,12 @@ footer {
 
 footer p {
   margin: 0;
+  text-align: center;
+}
+
+footer a {
+  position: absolute;
+  right: 4.5vw;
 }
 
 footer a {
@@ -833,22 +799,11 @@ footer a {
     margin-top: 0;
   }
 
-  .contact {
-    padding-inline: 1.3rem;
-  }
-
-  .contact-compact {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
   footer {
     padding-inline: 1.3rem;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
   }
 
-  footer p:nth-child(2) {
+  footer a {
     display: none;
   }
 }

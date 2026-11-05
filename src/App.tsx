@@ -9,7 +9,6 @@ type SectionId =
   | 'about'
   | 'education'
   | 'skills'
-  | 'contact'
 
 const Arrow = () => <span aria-hidden="true">↗</span>
 
@@ -78,7 +77,6 @@ function App() {
         },
         { id: 'education' as SectionId, label: 'Education', show: portfolio.education.length > 0 },
         { id: 'skills' as SectionId, label: 'Skills', show: portfolio.skills.length > 0 },
-        { id: 'contact' as SectionId, label: 'Contact', show: true },
       ].filter((section) => section.show),
     [],
   )
@@ -224,9 +222,6 @@ function App() {
         <section className="section research" id="research">
           <SectionHeading eyebrow="Selected work" title="Featured Research" />
           <div className="research-body">
-            <p className="section-intro reveal">
-              Research on how agents learn from one another, adapt through interaction, and acquire useful behavior from language-model supervision.
-            </p>
             <div className="research-list">
               {portfolio.featuredResearch.map((project) => (
                 <article className="research-project reveal" key={project.title}>
@@ -326,20 +321,10 @@ function App() {
           </section>
         )}
 
-        <section className="contact" id="contact">
-          <div className="contact-compact reveal">
-            <p className="eyebrow">Contact</p>
-            <div className="contact-links">
-              <TextLink href={`mailto:${profile.email}`}>{profile.email}</TextLink>
-              <TextLink href={portfolio.links.github}>GitHub</TextLink>
-            </div>
-          </div>
-        </section>
       </main>
 
       <footer>
         <p>© {new Date().getFullYear()} {profile.name}</p>
-        <p>Designed for clarity. Built for the web.</p>
         <a href="#top">Back to top ↑</a>
       </footer>
     </div>
