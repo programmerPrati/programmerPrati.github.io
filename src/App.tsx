@@ -156,7 +156,6 @@ function App() {
           onClick={() => setMenuOpen(false)}
         >
           <span>{profile.initials}</span>
-          <span className="wordmark-name">{profile.name}</span>
         </a>
         <nav
           className={`navigation ${menuOpen ? 'is-open' : ''}`}
@@ -185,9 +184,8 @@ function App() {
       <main id="main-content">
         <section className="hero" id="top">
           <div className="hero-content reveal is-visible">
-            <p className="eyebrow">{profile.role}</p>
             <h1>{profile.name}</h1>
-            <p className="hero-tagline">Researching intelligence.</p>
+            <p className="hero-role">{profile.role}</p>
             <div className="hero-actions">
               <TextLink href={`mailto:${profile.email}`} icon={<FaEnvelope aria-hidden="true" />}>
                 {profile.email}
@@ -213,6 +211,7 @@ function App() {
           </figure>
           <div className="profile-summary-copy reveal">
             <p className="eyebrow">About me</p>
+            <p className="profile-summary-tagline">Researching intelligence.</p>
             {portfolio.briefAbout.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}

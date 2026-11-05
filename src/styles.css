@@ -255,7 +255,7 @@ h3 {
   line-height: 1;
 }
 
-.hero-tagline {
+.hero-role {
   margin: 0 0 1.4rem;
   color: #dce2e6;
   font-size: clamp(1.2rem, 1.8vw, 1.6rem);
@@ -342,7 +342,15 @@ h3 {
 }
 
 .profile-summary-copy .eyebrow {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.profile-summary-tagline {
+  color: var(--ink) !important;
+  font-size: clamp(1.25rem, 1.7vw, 1.55rem) !important;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.35 !important;
 }
 
 .profile-summary-copy > p:not(.eyebrow) {
@@ -690,10 +698,6 @@ footer a {
   .site-header {
     height: 62px;
     padding-inline: 1.3rem;
-  }
-
-  .wordmark-name {
-    display: none;
   }
 
   .menu-button {
