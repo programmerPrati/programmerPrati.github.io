@@ -179,10 +179,8 @@ function App() {
             <h1>{profile.name}</h1>
             <p className="hero-tagline">Researching intelligence.</p>
             <div className="hero-actions">
-              <a className="button primary" href="#research">
-                Explore research <span aria-hidden="true">↓</span>
-              </a>
-              <TextLink href={`mailto:${profile.email}`}>Start a conversation</TextLink>
+              <TextLink href={`mailto:${profile.email}`}>{profile.email}</TextLink>
+              <TextLink href={portfolio.links.github}>GitHub</TextLink>
             </div>
           </div>
         </section>
@@ -206,36 +204,38 @@ function App() {
 
         <section className="section research" id="research">
           <SectionHeading eyebrow="Selected work" title="Featured Research" />
-          <p className="section-intro reveal">
-            Research on how agents learn from one another, adapt through interaction, and acquire useful behavior from language-model supervision.
-          </p>
-          <div className="research-list">
-            {portfolio.featuredResearch.map((project) => (
-              <article className="research-project reveal" key={project.title}>
-                <div className="research-project-meta">
-                  <p>{project.period}</p>
-                </div>
-                <div className="research-project-content">
-                  <h3>{project.title}</h3>
-                  {project.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                  {(project.status || project.targetVenue) && (
-                    <div className="research-badges">
-                      {project.status && <span className="project-status">{project.status}</span>}
-                      {project.targetVenue && (
-                        <span className="target-venue">Target: {project.targetVenue}</span>
-                      )}
-                    </div>
-                  )}
-                  {project.links.length > 0 && (
-                    <div className="research-links">
-                      {project.links.map((link) => (
-                        <TextLink key={link.href} href={link.href}>{link.label}</TextLink>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </article>
-            ))}
+          <div className="research-body">
+            <p className="section-intro reveal">
+              Research on how agents learn from one another, adapt through interaction, and acquire useful behavior from language-model supervision.
+            </p>
+            <div className="research-list">
+              {portfolio.featuredResearch.map((project) => (
+                <article className="research-project reveal" key={project.title}>
+                  <div className="research-project-meta">
+                    <p>{project.period}</p>
+                  </div>
+                  <div className="research-project-content">
+                    <h3>{project.title}</h3>
+                    {project.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                    {(project.status || project.targetVenue) && (
+                      <div className="research-badges">
+                        {project.status && <span className="project-status">{project.status}</span>}
+                        {project.targetVenue && (
+                          <span className="target-venue">Target: {project.targetVenue}</span>
+                        )}
+                      </div>
+                    )}
+                    {project.links.length > 0 && (
+                      <div className="research-links">
+                        {project.links.map((link) => (
+                          <TextLink key={link.href} href={link.href}>{link.label}</TextLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
