@@ -294,6 +294,18 @@ h3 {
   font-size: 0.78rem;
 }
 
+.text-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.text-link-label svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
 .text-link span:last-child {
   transition: transform 180ms ease;
 }

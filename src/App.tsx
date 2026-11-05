@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 import { portfolio } from './data/portfolio'
 
 type SectionId =
@@ -12,7 +13,15 @@ type SectionId =
 
 const Arrow = () => <span aria-hidden="true">↗</span>
 
-function TextLink({ href, children }: { href: string; children: React.ReactNode }) {
+function TextLink({
+  href,
+  children,
+  icon,
+}: {
+  href: string
+  children: React.ReactNode
+  icon?: React.ReactNode
+}) {
   const external = href.startsWith('http')
   return (
     <a
@@ -21,7 +30,10 @@ function TextLink({ href, children }: { href: string; children: React.ReactNode 
       target={external ? '_blank' : undefined}
       rel={external ? 'noreferrer' : undefined}
     >
-      <span>{children}</span>
+      <span className="text-link-label">
+        {icon}
+        {children}
+      </span>
       <Arrow />
     </a>
   )
@@ -179,9 +191,15 @@ function App() {
             <h1>{profile.name}</h1>
             <p className="hero-tagline">Researching intelligence.</p>
             <div className="hero-actions">
-              <TextLink href={`mailto:${profile.email}`}>{profile.email}</TextLink>
-              <TextLink href={portfolio.links.github}>GitHub</TextLink>
-              <TextLink href={portfolio.links.linkedin}>LinkedIn</TextLink>
+              <TextLink href={`mailto:${profile.email}`} icon={<FaEnvelope aria-hidden="true" />}>
+                {profile.email}
+              </TextLink>
+              <TextLink href={portfolio.links.github} icon={<FaGithub aria-hidden="true" />}>
+                GitHub
+              </TextLink>
+              <TextLink href={portfolio.links.linkedin} icon={<FaLinkedin aria-hidden="true" />}>
+                LinkedIn
+              </TextLink>
             </div>
           </div>
         </section>
